@@ -5,7 +5,7 @@
     <h1 class="text-4xl font-bold mb-5">
         Create a List
     </h1>
-    <form method="POST" autocomplete="off">
+    <form method="POST" action="/notes" autocomplete="off">
         <div class="form__inner-div py-4">
             <div class="input-parent">
                 <div class="flex flex-col p-4">
