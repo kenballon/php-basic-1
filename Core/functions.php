@@ -30,6 +30,13 @@ function authorize($condition, $status = Response::FORBIDDEN)
     }
 }
 
+function abort($status = Response::NOT_FOUND)
+{
+    http_response_code($status);
+    require base_path("views/{$status}.view.php");
+    die();
+}
+
 function base_path($path = '')
 {
     return BASE_PATH . ($path ? DIRECTORY_SEPARATOR . $path : $path);

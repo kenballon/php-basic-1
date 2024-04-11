@@ -6,10 +6,13 @@
         <span class="material-symbols-outlined">
             keyboard_backspace
         </span>
-        <span>Go Back to Watchlist</span></a>
+        <span>Go Back to Watchlist</span>
+    </a>
+    
     <h1 class="text-4xl font-bold mb-5">
         <?= htmlspecialchars($note['title']) ?>
     </h1>
+    
     <div>
         <div class="flex gap-2 items-center mb-4">
             <h2 class="text-2xl">
@@ -24,8 +27,12 @@
         <div class="create-list mt-10 flex gap-3">
             <a href="/notes/edit" class="px-8 py-4 bg-sky-600 hover:bg-sky-700 text-white hover:text-white">Edit this
                 list</a>
-            <a href="/notes" class="px-8 py-4 bg-red-700  hover:bg-red-900 text-white hover:text-white">Delete this
-                List</a>
+            <form method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="id" value="<?= $note['id'] ?>">
+                <button class="px-8 py-4 bg-red-700  hover:bg-red-900 text-white hover:text-white">Delete this
+                    List</button>
+            </form>
         </div>
     </div>
 </main>

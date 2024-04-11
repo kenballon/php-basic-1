@@ -2,25 +2,19 @@
 
 use Core\Database;
 
-$pageTitle = 'Add List';
+$pageTitle = 'Movie';
+$currentUserID = 2;
 
 $config = require base_path('config.php');
 $db = new Database($config['database']);
 
-$dbname = "myapp";
-$dbtablename = "posts";
+$movieID = $_GET['id'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $db->query('INSERT INTO posts(title, author, synopsis) VALUES(:title, :author, :synopsis)', [
-        'title' => $_POST['title'],
-        'author' => 4,
-        'synopsis' => $_POST['synopsis'],
-    ]);
+$note = $db->query('select * from posts where id = :id', [':id' => $movieID])->findOrFail();
 
-}
+authorize($note['author'] === $currentUserID);
 
 require view('notes/edit.view.php', [
-    'errors' => $errors ?? [],
-    'old' => $_POST ?? [],
+    'note' => $note,
 ]);
