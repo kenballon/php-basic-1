@@ -1,0 +1,196 @@
+@import "/css/_util-class.css";
+
+:root {
+  --ff-primary: "Borna", sans-serif;
+  --ff-secondary: "Neue Montreal", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--ff-primary);
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: var(--ff-secondary);
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+body {
+  text-wrap: pretty;
+  font-family: var(--ff-secondary);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw - 1rem, 5.5rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 5vw - 1rem, 4rem);
+}
+
+div,
+span,
+p {
+  font-family: var(--ff-secondary);
+}
+
+ul li {
+  position: relative;
+  padding-block: 1.5rem;
+  border-bottom: 0.5px solid lightgray;
+  transition: padding-inline 0.3s ease;
+  overflow: hidden;
+
+  &:first-child {
+    border-top: 0.5px solid lightgray;
+  }
+
+  &:hover {
+    background-color: hsl(213, 100%, 96%);
+    padding-inline: 2rem;
+  }
+}
+
+.pointer-events {
+  pointer-events: none;
+}
+
+.form__inner-div {
+  border-radius: 4px;
+  outline: 1px solid lightgray;
+  background-color: white;
+
+  .input-parent {
+    & label {
+      margin-bottom: 0.5rem;
+    }
+    & input[type="text"] {
+      border: 1px solid lightgray;
+      width: 100%;
+      color: #4a4a4a;
+      text-transform: capitalize;
+    }
+    & input[type="text"]::placeholder,
+    & textarea::placeholder {
+      color: lightgray;
+    }
+
+    & input[type="text"]:focus::placeholder,
+    & textarea:focus::placeholder {
+      color: transparent;
+    }
+    & input[type="text"]:focus + .input-parent {
+      background-color: blue;
+    }
+
+    & textarea {
+      resize: none;
+      outline-color: lightgray;
+      border: 1px solid lightgray;
+    }
+
+    & input:focus,
+    & textarea:focus {
+      outline: none !important;
+      --tw-ring-color: transparent;
+      --tw-ring-shadow: unset;
+    }
+  }
+
+  .btn-wrapper {
+    padding-top: 1rem;
+    border-top: 1px dashed lightgray;
+  }
+
+  &:focus-within {
+    outline-color: blue;
+    outline-width: 2px;
+    box-shadow: rgba(0, 128, 255, 0.313) 0px 8px 24px;
+  }
+}
+
+.note-back-link {
+  width: max-content;
+  border-bottom: 1px solid transparent;
+  padding-right: 0.75rem;
+  &:hover {
+    border-bottom: 1px solid rgb(3 105 161);
+  }
+}
