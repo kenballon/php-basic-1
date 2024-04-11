@@ -1,5 +1,5 @@
 <?php
 
-$pageName = 'About Us';
+$pageTitle = 'About Us';
 
-require 'views/about.view.php';
+require view('about.view.php');

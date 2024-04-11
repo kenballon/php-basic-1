@@ -1,10 +1,12 @@
 <?php
 
-$pageName = 'Movies';
+$pageTitle = 'Movies';
 
-$config = require 'config.php';
+$config = require base_path('config.php');
 $db = new Database($config['database']);
 
 $notes = $db->query('select * from posts where author = 2', [])->get();
 
-require 'views/notes/index.view.php';
+require view('notes/index.view.php', [
+    'notes' => $notes,
+]);

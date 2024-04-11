@@ -1,5 +1,5 @@
-<?php require('views/partials/head.php') ?>
-<?php require('views/partials/nav.php') ?>
+<?php require base_path('views/partials/head.php') ?>
+<?php require base_path('views/partials/nav.php') ?>
 
 <main class="mx-auto mt-16 max-w-xl sm:mt-20">
     <a href="/notes" class="note-back-link flex items-center mb-3 pb-2 gap-3 hover:text-sky-700">
@@ -32,4 +32,4 @@
 
 
 
-<?php require('views/partials/footer.php') ?>
+<?php require base_path('views/partials/footer.php') ?>

@@ -1,8 +1,8 @@
 <?php
 
-$pageName = 'Add List';
+$pageTitle = 'Add List';
 
-$config = require 'config.php';
+$config = require base_path('config.php');
 $db = new Database($config['database']);
 
 $dbname = "myapp";
@@ -18,4 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 }
 
-require 'views/notes/edit.view.php';
+require view('notes/edit.view.php', [
+    'errors' => $errors ?? [],
+    'old' => $_POST ?? [],
+]);

@@ -1,4 +1,4 @@
-<?php $pageName = "404 Page Not Found!" ?>
+<?php $pageTitle = "404 Page Not Found!" ?>
 <?php require('partials/head.php') ?>
 <?php require('partials/nav.php') ?>
 

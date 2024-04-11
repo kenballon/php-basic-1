@@ -1,5 +1,5 @@
 <?php
 
-$pageName = 'Contact';
+$pageTitle = 'Contact';
 
-require 'views/contact.view.php';
+require view('contact.view.php');

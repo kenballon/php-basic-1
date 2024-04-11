@@ -32,3 +32,9 @@ function base_path($path = '')
 {
     return BASE_PATH . ($path ? DIRECTORY_SEPARATOR . $path : $path);
 }
+
+function view($path = 'index.view.php', $attr = [])
+{
+    extract($attr);
+    return base_path('views/' . $path);
+}

@@ -1,16 +1,16 @@
 <?php
 
-$pageName = 'Add List';
-require 'Validator.php';
+$pageTitle = 'Add List';
+require base_path('Validator.php');
 
-$config = require 'config.php';
+$config = require base_path('config.php');
 $db = new Database($config['database']);
 
 $dbname = "myapp";
 $dbtablename = "posts";
+$errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {    
-    $errors = [];
 
     if (! Validator::string($_POST['title'], 1, 300)) {
         $errors['title'] = 'A title is required and cannot be empty*';
@@ -26,8 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'author' => 2,
             'synopsis' => $_POST['synopsis'],
         ]);
+        header('Location: /notes');
+        exit;
     }
 
 }
 
-require 'views/notes/create.view.php';
+require view('notes/create.view.php', [
+    'errors' => $errors ?? [],
+    'old' => $_POST ?? [],
+]);

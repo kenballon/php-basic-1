@@ -1,5 +1,5 @@
-<?php require('views/partials/head.php') ?>
-<?php require('views/partials/nav.php') ?>
+<?php require base_path('views/partials/head.php') ?>
+<?php require base_path('views/partials/nav.php') ?>
 
 <main class="mx-auto mt-16 max-w-xl sm:mt-20">
     <h1 class="text-4xl font-bold mb-5">
@@ -42,4 +42,4 @@
 
 
 
-<?php require('views/partials/footer.php') ?>
+<?php require base_path('views/partials/footer.php') ?>
