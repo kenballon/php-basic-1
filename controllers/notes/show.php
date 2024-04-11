@@ -1,5 +1,7 @@
 <?php
 
+use Core\Database;
+
 $pageTitle = 'Movie';
 $currentUserID = 2;
 

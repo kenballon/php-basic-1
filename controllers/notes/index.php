@@ -1,5 +1,7 @@
 <?php
 
+use Core\Database;
+
 $pageTitle = 'Movies';
 
 $config = require base_path('config.php');

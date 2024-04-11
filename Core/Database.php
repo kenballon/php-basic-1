@@ -4,6 +4,9 @@
 // create a new instance of the PDO class
 // DSN Data Source Name. Connection string.
 
+namespace Core;
+use PDO;
+
 class Database
 {
     public $conn; // property

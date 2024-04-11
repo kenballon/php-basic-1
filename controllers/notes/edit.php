@@ -1,5 +1,7 @@
 <?php
 
+use Core\Database;
+
 $pageTitle = 'Add List';
 
 $config = require base_path('config.php');
