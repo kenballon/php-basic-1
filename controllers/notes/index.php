@@ -1,11 +1,11 @@
 <?php
 
+use Core\App;
 use Core\Database;
 
 $pageTitle = 'Movies';
 
-$config = require base_path('config.php');
-$db = new Database($config['database']);
+$db = App::resolve(Database::class);
 
 $notes = $db->query('select * from posts where author = 2', [])->get();
 
