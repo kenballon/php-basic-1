@@ -39,8 +39,8 @@ if(!empty(($errors)))
 
 //update the note in the database
 $db->query('UPDATE posts SET title = :title, synopsis = :synopsis WHERE id = :id AND author = :author', [
-    'title' => htmlspecialchars($_POST['title']),
-    'synopsis' => htmlspecialchars($_POST['synopsis']),
+    'title' => $_POST['title'],
+    'synopsis' => $_POST['synopsis'],
     'id' => $movieID,
     'author' => $currentUserID,
 ]);
