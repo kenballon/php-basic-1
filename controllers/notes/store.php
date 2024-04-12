@@ -7,21 +7,21 @@ use Core\App;
 
 $db = App::resolve(Database::class);
 
-$errors = [];
-
-if (! Validator::string($_POST['title'], 1, 300)) {
-    $errors['title'] = 'A title is required and cannot be empty*';
-}
-
-if (!Validator::string($_POST['synopsis'], 1, 1500)) {
-    $errors['synopsis'] = 'A  description is required and cannot be empty*';
+$errors = validateInput(['title' => [1, 300], 'synopsis' => [1, 1500]]);
+function validateInput($fields) {
+    $errors = [];
+    foreach ($fields as $field => $limits) {
+        if (! Validator::string($_POST[$field], $limits[0], $limits[1])) {
+            $errors[$field] = ucfirst($field) . ' is required and cannot be empty*';
+        }
+    }
+    return $errors;
 }
 
 if(!empty(($errors)))
 {
     return view('notes/create.view.php', [
         'errors' => $errors ?? [],
-        'old' => $_POST ?? [],
     ]);
 }
 
