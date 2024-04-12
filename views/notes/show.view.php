@@ -25,7 +25,7 @@
         </div>
 
         <div class="create-list mt-10 flex gap-3">
-            <a href="/notes/edit" class="px-8 py-4 bg-sky-600 hover:bg-sky-700 text-white hover:text-white">Edit this
+            <a href="/note/edit?id=<?= $note['id'] ?>" class="px-8 py-4 bg-sky-600 hover:bg-sky-700 text-white hover:text-white">Edit this
                 list</a>
             <form method="POST">
                 <input type="hidden" name="_method" value="DELETE">
