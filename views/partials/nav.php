@@ -18,6 +18,8 @@
                                 class="<?= urlIs('/notes') ?> rounded-md px-3 py-2 text-sm font-medium">Movie List</a>
                             <a href="/contact"
                                 class="<?= urlIs('/contact') ?> rounded-md px-3 py-2 text-sm font-medium">Contact</a>
+                            <a href="/register"
+                                class="<?= urlIs('/register') ?> rounded-md px-3 py-2 text-sm font-medium">Register</a>
                         </div>
                     </div>
                 </div>
