@@ -14,6 +14,6 @@ $note = $db->query('select * from posts where id = :id', [':id' => $movieID])->f
 authorize($note['author'] === 1);
 
 
-require view('notes/show.view.php', [
+view('notes/show.view.php', [
     'note' => $note,
 ]);

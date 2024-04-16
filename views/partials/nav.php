@@ -11,7 +11,9 @@
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             <a href="/" class="<?= urlIs('/') ?> rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
                             <a href="/about" class="<?= urlIs('/about') ?> rounded-md px-3 py-2 text-sm font-medium">About</a>
+                            <?php if ($_SESSION['user'] ?? false) : ?>
                             <a href="/notes" class="<?= urlIs('/notes') ?> rounded-md px-3 py-2 text-sm font-medium">Movie List</a>
+                            <?php endif; ?>
                             <a href="/contact" class="<?= urlIs('/contact') ?> rounded-md px-3 py-2 text-sm font-medium">Contact</a>
                         </div>
                     </div>
@@ -32,13 +34,23 @@
                         <div class="relative ml-3">
                             <div>
                                 <?php if ($_SESSION['user'] ?? false) : ?>
-                                    <button type="button" class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                                        <span class="absolute -inset-1.5"></span>
-                                        <span class="sr-only">Open user menu</span>
-                                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                                    </button>
+
+                                    <form method="POST" action="/sessions" >
+
+                                        <input type="hidden" name="_method" value="DELETE">
+
+                                        <button type="submit" class="relative flex max-w-xs items-center rounded-full bg-gray-800 hover:bg-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 p-1" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                            <span class="absolute -inset-1.5"></span>
+                                            <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                            <span class="rounded-md px-3 py-2 text-sm font-medium text-white hover:text-light-blue-500">Logout</span>
+                                        </button>
+                                    </form>
+
                                 <?php else : ?>
-                                    <a href="/register" class="<?= urlIs('/register') ?> rounded-md px-3 py-2 text-sm font-medium">Register</a>
+                                    <div class="flex gap-2">
+                                        <a href="/register" class="<?= urlIs('/register') ?> rounded-md px-3 py-2 text-sm font-medium">Register</a>
+                                        <a href="/login" class="<?= urlIs('/login') ?> rounded-md px-3 py-2 text-sm font-medium">Login</a>
+                                    </div>
                                 <?php endif; ?>
                             </div>
                         </div>

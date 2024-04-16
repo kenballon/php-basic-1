@@ -1,11 +1,8 @@
 <?php
 
-// connect to our Database with PHP PDO
-// create a new instance of the PDO class
-// DSN Data Source Name. Connection string.
-
 namespace Core;
 use PDO;
+use PDOException;
 
 class Database
 {

@@ -2,4 +2,4 @@
 
 $pageTitle = 'New account registration';
 
-require view('registration/create.view.php');
+view('registration/create.view.php');
