@@ -8,7 +8,7 @@ $pageTitle = 'Movie';
 
 $db = App::resolve(Database::class);
 
-$currentUserID = 2;
+$currentUserID = 5;
 $movieID = $_POST['id'];
 
 //get the note from the database
