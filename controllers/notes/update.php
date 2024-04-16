@@ -8,14 +8,13 @@ $pageTitle = 'Movie';
 
 $db = App::resolve(Database::class);
 
-$currentUserID = 5;
 $movieID = $_POST['id'];
 
 //get the note from the database
 $note = $db->query('select * from posts where id = :id', [':id' => $movieID])->findOrFail();
 
 //authorized user can update the note
-authorize($note['author'] === $currentUserID);
+authorize($note['author'] === 1);
 
 //validate the input
 $errors = validateInput(['title' => [1, 300], 'synopsis' => [1, 1500]]);
@@ -42,7 +41,7 @@ $db->query('UPDATE posts SET title = :title, synopsis = :synopsis WHERE id = :id
     'title' => $_POST['title'],
     'synopsis' => $_POST['synopsis'],
     'id' => $movieID,
-    'author' => $currentUserID,
+    'author' => 1,
 ]);
 
 //redirect to the notes page

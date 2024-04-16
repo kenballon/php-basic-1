@@ -34,8 +34,7 @@ if($user){
 }else{
     $db->query('INSERT INTO users (email, password) VALUES (:email, :password)', [
         'email' => $email,
-        // 'password' => password_hash($password, PASSWORD_DEFAULT)
-        'password' => $password
+        'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
 
     $_SESSION['user'] = [    

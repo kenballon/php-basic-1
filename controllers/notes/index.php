@@ -7,7 +7,11 @@ $pageTitle = 'Movies';
 
 $db = App::resolve(Database::class);
 
-$notes = $db->query('select * from posts where author = 5', [])->get();
+$userID = $_SESSION['user']['id'] ?? false;
+
+$notes = $db->query('select * from posts where author = :id', [
+    'id' => 1
+])->get();
 
 require view('notes/index.view.php', [
     'notes' => $notes,
