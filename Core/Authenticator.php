@@ -31,5 +31,8 @@ class Authenticator
     public function logout()
     {
         Session::destroy();
+
+        header('Location: /login');
+        exit();
     }
 }
