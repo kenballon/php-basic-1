@@ -13,7 +13,6 @@ $note = $db->query('select * from posts where id = :id', [':id' => $movieID])->f
 
 authorize($note['author'] === 1);
 
-
 view('notes/show.view.php', [
     'note' => $note,
 ]);

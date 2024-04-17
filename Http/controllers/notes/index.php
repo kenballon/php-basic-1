@@ -7,7 +7,10 @@ $pageTitle = 'Movies';
 
 $db = App::resolve(Database::class);
 
-$userID = $_SESSION['user']['id'] ?? false;
+// $userId = $_SESSION['user']['password'];
+// $userEmail = $_SESSION['user']['email'];
+
+// dd("{$userId} {$userEmail}");
 
 $notes = $db->query('select * from posts where author = :id', [
     'id' => 1
