@@ -9,13 +9,16 @@ class Authenticator
 
         $user = App::resolve(Database::class)->query('SELECT * FROM users WHERE email = :email', ['email' => $email])->find();
 
-        if ($user && password_verify($password, $user['password'])) {
+        if ($user) {
 
-            $this->login([
-                'email' => $user['email'],
-            ]);
+            if (password_verify($password, $user['password'])) {
 
-            return true;
+                $this->login([
+                    'email' => $user['email'],
+                ]);
+
+                return true;
+            }
         }
     }
 

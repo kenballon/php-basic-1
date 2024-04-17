@@ -2,29 +2,28 @@
 
 use Core\Authenticator;
 use Core\Session;
+use Core\ValidationException;
 use Http\Forms\LoginForm;
 
-$email = $_POST['email'];
-$password = $_POST['password'];
-
-
 // Validate form inputs
-$form = new LoginForm();
+try {
+    $form = LoginForm::validate($attributes = [
+        'email' => $_POST['email'],
+        'password' => $_POST['password']
+    ]);
 
-if ($form->validate($email, $password)) {
+} catch (ValidationException $exception) {
+    
+    Session::flash('errors', $exception->errors);
+    Session::flash('old', $exception->old);
 
-    // Attempt to authenticate the user
-    if ((new Authenticator)->attempt($email, $password)) {
-        redirect('/');
-    }
-
-    $form->error('email', 'Email or password is incorrect. Please try again.');
+    return redirect('/login');
 }
 
-Session::flash('errors', $form->errors());
-
-return redirect('/login');
-
-// return view('sessions/create.view.php', [
-//     'errors' => $form->errors(),
-// ]);
+// Attempt to authenticate the user
+if ((new Authenticator)->attempt($attributes['email'], $attributes['password'])) {
+    redirect('/notes');
+} else {
+    Session::flash('errors', ['email' => 'Your email does not exist in our database. Kindly register an account.']);
+    return redirect('/login');
+}
