@@ -1,3 +1,4 @@
 <?php
+use Core\Authenticator;
 
-logout(); // Destroy the session
+(new Authenticator)->logout(); // Destroy the session

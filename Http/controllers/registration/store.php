@@ -1,6 +1,7 @@
 <?php
 
 use Core\App;
+use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
 
@@ -25,8 +26,6 @@ if (!empty($errors)) {
     return view('registration/create.view.php', ['errors' => $errors]);
 }
 
-
-
 $user = $db->query('SELECT * FROM users WHERE email = :email', ['email' => $email])->find();
 
 // If yes, redirect back to login page with error message
@@ -39,7 +38,7 @@ if($user){
         'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
 
-   login($user);
+   (new Authenticator)->login($user);
 
     header('Location: /');
     exit();

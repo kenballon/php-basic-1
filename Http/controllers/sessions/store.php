@@ -1,39 +1,30 @@
 <?php
 
-use Core\App;
-use Core\Database;
+use Core\Authenticator;
+use Core\Session;
 use Http\Forms\LoginForm;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-// Check if account already exists
-$db = App::resolve(Database::class);
 
 // Validate form inputs
 $form = new LoginForm();
 
-if(!$form->validate($email, $password)) {
-    return view('sessions/create.view.php', [
-        'errors' => $form->errors()
-    ]);
+if ($form->validate($email, $password)) {
+
+    // Attempt to authenticate the user
+    if ((new Authenticator)->attempt($email, $password)) {
+        redirect('/');
+    }
+
+    $form->error('email', 'Email or password is incorrect. Please try again.');
 }
 
+Session::flash('errors', $form->errors());
 
-$user = $db->query('SELECT * FROM users WHERE email = :email', ['email' => $email])->find();
+return redirect('/login');
 
-if ($user && password_verify($password, $user['password'])) {
-
-    login([
-        'email' => $user['email'],
-    ]);
-
-    header('Location: /notes');
-    exit();
-}
-
-return view('sessions/create.view.php', [
-    'errors' => [
-        'email' => 'Your email or password is incorrect. Please try again.',
-    ]
-]);
+// return view('sessions/create.view.php', [
+//     'errors' => $form->errors(),
+// ]);
