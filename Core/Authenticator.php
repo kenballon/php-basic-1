@@ -38,4 +38,15 @@ class Authenticator
         header('Location: /login');
         exit();
     }
+
+    public function getIdByEmail($email)
+    {
+        $user = App::resolve(Database::class)->query('SELECT * FROM users WHERE email = :email', ['email' => $email])->find();
+
+        if ($user) {
+            return $user['id'];
+        }
+
+        return null;
+    }
 }
