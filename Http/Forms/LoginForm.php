@@ -16,7 +16,7 @@ class LoginForm
             $this->errors['email'] = 'Your email address is invalid. Please try again.';
         }
 
-        if (!Validator::string($attributes['password'], 6, 255)) {
+        if (!Validator::string($attributes['password'])) {
             $this->errors['password'] = 'Your password did not match. Please try again.';
         }        
     }
