@@ -3,7 +3,6 @@
 use Core\App;
 use Core\Database;
 use Core\Validator;
-use Core\Authenticator;
 
 $pageTitle = 'Movie';
 
@@ -36,9 +35,6 @@ if(!empty(($errors)))
         'note' => $note,
     ]);
 }
-
-// $authenticator = App::resolve(Authenticator::class);
-// $userID = $authenticator->getUserIdByEmail($_SESSION['user']['email']);
 
 $userID = $_SESSION['user']['id'];
 

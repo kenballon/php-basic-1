@@ -52,5 +52,5 @@ class Database
         }
 
         return $result;
-    }
+    }    
 }
