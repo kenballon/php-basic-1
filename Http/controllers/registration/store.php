@@ -28,17 +28,18 @@ if (!empty($errors)) {
 
 $user = $db->query('SELECT * FROM users WHERE email = :email', ['email' => $email])->find();
 
-// If yes, redirect back to login page with error message
-if($user){
+if ($user) {
     header('Location: /login');
     exit();
-}else{
+} else {
     $db->query('INSERT INTO users (email, password) VALUES (:email, :password)', [
         'email' => $email,
         'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
 
-   (new Authenticator)->login($user);
+    $newUser = $db->query('SELECT * FROM users WHERE email = :email', ['email' => $email])->find();
+
+    (new Authenticator)->login($newUser);
 
     header('Location: /');
     exit();
