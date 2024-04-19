@@ -25,7 +25,8 @@ class Authenticator
     public function login($user)
     {
         $_SESSION['user'] = [
-            'email' => $user['email']
+            'email' => $user['email'],
+            'id' => $this->getUserIdByEmail($user['email']),
         ];
 
         session_regenerate_id(true);
@@ -37,16 +38,12 @@ class Authenticator
 
         header('Location: /login');
         exit();
-    }
-
-    public function getIdByEmail($email)
-    {
-        $user = App::resolve(Database::class)->query('SELECT * FROM users WHERE email = :email', ['email' => $email])->find();
-
-        if ($user) {
-            return $user['id'];
-        }
-
-        return null;
+    } 
+    
+    public function getUserIdByEmail($email) {
+        $db = App::resolve(Database::class);
+        return $db->query('select * from users where email = :email', [
+            'email' => $email,
+        ])->find()['id'];
     }
 }

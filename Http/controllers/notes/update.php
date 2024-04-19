@@ -3,6 +3,7 @@
 use Core\App;
 use Core\Database;
 use Core\Validator;
+use Core\Authenticator;
 
 $pageTitle = 'Movie';
 
@@ -36,12 +37,17 @@ if(!empty(($errors)))
     ]);
 }
 
+// $authenticator = App::resolve(Authenticator::class);
+// $userID = $authenticator->getUserIdByEmail($_SESSION['user']['email']);
+
+$userID = $_SESSION['user']['id'];
+
 //update the note in the database
 $db->query('UPDATE posts SET title = :title, synopsis = :synopsis WHERE id = :id AND author = :author', [
     'title' => $_POST['title'],
     'synopsis' => $_POST['synopsis'],
     'id' => $movieID,
-    'author' => 1,
+    'author' => $userID,
 ]);
 
 //redirect to the notes page

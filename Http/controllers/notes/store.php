@@ -1,8 +1,9 @@
 <?php 
 
-use Core\Validator;
-use Core\Database;
 use Core\App;
+use Core\Database;
+use Core\Validator;
+use Core\Authenticator;
 
 
 $db = App::resolve(Database::class);
@@ -25,9 +26,14 @@ if(!empty(($errors)))
     ]);
 }
 
+// $authenticator = App::resolve(Authenticator::class);
+// $userID = $authenticator->getUserIdByEmail($_SESSION['user']['email']);
+
+$userID = $_SESSION['user']['id'];
+
 $db->query('INSERT INTO posts(title, author, synopsis) VALUES(:title, :author, :synopsis)', [
     'title' => $_POST['title'],
-    'author' => 1,
+    'author' => $userID,
     'synopsis' => $_POST['synopsis'],
 ]);
 header('Location: /notes');

@@ -1,8 +1,9 @@
 <?php
 
 use Core\App;
-use Core\Container;
 use Core\Database;
+use Core\Container;
+use Core\Middleware\Middleware;
 
 $container = new Container;
 
@@ -13,4 +14,9 @@ $container->bind('Core\Database', function () {
 
 });
 
+$container->bind('Core\Authenticator', function () {
+    return new \Core\Authenticator;
+});
+
 App::setContainer($container);
+Middleware::resolve('userID');
